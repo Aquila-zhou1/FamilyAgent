@@ -56,6 +56,7 @@ def get_weather(location: str) -> str:
         str: 未来 3 天的详细天气信息
     """
     try:
+        logger.info("执行 get_weather 工具：location=%s（模拟数据）", location)
         # 模拟天气数据（实际项目中可接入真实天气 API）
         weather_data = {
             "北京": [
@@ -170,7 +171,7 @@ def get_weather(location: str) -> str:
         weather_list = weather_data.get(location, default_weather)
 
         # 格式化天气信息
-        result_lines = [f" {location}未来 3 天天气预报："]
+        result_lines = [f"{location}未来 3 天天气示例（模拟数据，非实时预报）："]
         for day in weather_list:
             result_lines.append(
                 f"{day['date']}: {day['weather']}，气温{day['temp']}，{day['wind']}"
@@ -297,14 +298,12 @@ def invoke_travel_agent(destination: str, preferences: str = "") -> str:
         # 构建提示词
         messages = create_travel_agent_prompt(destination, preferences)
 
-        # 获取 LLM 实例
-        llm = get_llm()
-        if llm is None:
-            return "LLM 未初始化，无法规划行程"
+        agent = get_travel_agent()
+        if agent is None:
+            return "旅游规划智能体未初始化，无法规划行程"
 
-        # 调用 LLM 生成回答
-        response = llm.invoke(messages)
-        return response.content
+        response = agent.invoke({"messages": messages[1:]})
+        return response["messages"][-1].text
 
     except Exception as e:
         logger.error(f"调用旅游规划智能体时出错：{e}")
@@ -326,20 +325,18 @@ def stream_travel_agent(
     """
     try:
         # 构建提示词
-        print("destination: ", destination)
-        print("preferences: ", preferences)
         messages = create_travel_agent_prompt(destination, preferences)
-        print("messages: ", messages)
-        # 获取 LLM 实例
-        llm = get_llm()
-        if llm is None:
-            yield "LLM 未初始化，无法规划行程"
+        agent = get_travel_agent()
+        if agent is None:
+            yield "旅游规划智能体未初始化，无法规划行程"
             return
 
-        # 流式调用 LLM
-        for chunk in llm.stream(messages):
-            if hasattr(chunk, "content") and chunk.content:
-                yield chunk.content
+        # Agent 执行模型、工具、模型循环；HTTP 流只输出模型正文。
+        for chunk, metadata in agent.stream(
+            {"messages": messages[1:]}, stream_mode="messages"
+        ):
+            if metadata.get("langgraph_node") == "model" and chunk.text:
+                yield chunk.text
 
     except Exception as e:
         logger.error(f"流式调用旅游规划智能体时出错：{e}")

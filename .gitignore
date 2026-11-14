@@ -12,3 +12,4 @@ wheels/
 familyagent/.env
 familyagent/data/*
 plan/*
+uv.lock
