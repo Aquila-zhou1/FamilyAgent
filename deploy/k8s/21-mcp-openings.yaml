@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-openings
+  namespace: chess
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: mcp-openings}
+  template:
+    metadata:
+      labels: {app: mcp-openings}
+    spec:
+      containers:
+        - name: mcp-openings
+          image: familyagent:dev
+          imagePullPolicy: IfNotPresent
+          command: ["python","-m","familyagent.mcp_servers.openings_server"]
+          ports:
+            - containerPort: 8001
+          envFrom:
+            - configMapRef: {name: chess-config}
+          readinessProbe:
+            httpGet: {path: /healthz, port: 8001}
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /healthz, port: 8001}
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 512Mi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-openings
+  namespace: chess
+spec:
+  selector: {app: mcp-openings}
+  ports:
+    - port: 8001
+      targetPort: 8001

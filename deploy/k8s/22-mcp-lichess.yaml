@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-lichess
+  namespace: chess
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: mcp-lichess}
+  template:
+    metadata:
+      labels: {app: mcp-lichess}
+    spec:
+      containers:
+        - name: mcp-lichess
+          image: familyagent:dev
+          imagePullPolicy: IfNotPresent
+          command: ["python","-m","familyagent.mcp_servers.lichess_server"]
+          ports:
+            - containerPort: 8002
+          envFrom:
+            - configMapRef: {name: chess-config}
+          readinessProbe:
+            httpGet: {path: /healthz, port: 8002}
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /healthz, port: 8002}
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 512Mi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-lichess
+  namespace: chess
+spec:
+  selector: {app: mcp-lichess}
+  ports:
+    - port: 8002
+      targetPort: 8002

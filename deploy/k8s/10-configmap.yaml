@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chess-config
+  namespace: chess
+data:
+  FASTAPI_HOST: "0.0.0.0"
+  FASTAPI_PORT: "8000"
+  FASTAPI_RELOAD: "false"
+  MCP_HOST: "0.0.0.0"
+  MCP_OPENINGS_PORT: "8001"
+  MCP_LICHESS_PORT: "8002"
+  MCP_OPENINGS_URL: "http://mcp-openings:8001/mcp"
+  MCP_LICHESS_URL: "http://mcp-lichess:8002/mcp"
+  SEARCH_IMPL: "bm25"
+  LICHESS_MODE: "live"
+  MCP_CALL_TIMEOUT_SECONDS: "15"
