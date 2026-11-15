@@ -16,5 +16,5 @@
 {"category": "failure", "fault": "lichess_down", "question": "What is today's daily puzzle and its solution?", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F016"}
 {"category": "failure", "fault": "lichess_down", "question": "Show me puzzle f9Xve and its solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F017"}
 {"category": "failure", "fault": "lichess_down", "question": "Give me the daily puzzle and name the opening of its source game.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F018"}
-{"category": "failure", "fault": "invalid_id", "question": "Show me Lichess puzzle ID ???", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F019"}
+{"category": "failure", "fault": "invalid_id", "question": "Show me Lichess puzzle ID Zzzzz9", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F019"}
 {"category": "failure", "fault": "invalid_id", "question": "Get puzzle zz and its solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F020"}
