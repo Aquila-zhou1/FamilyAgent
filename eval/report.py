@@ -44,7 +44,8 @@ def main() -> int:
     print(f"p95 latency (all cases):        {p95(latencies) / 1000:.1f} s   (median {sorted(latencies)[len(latencies) // 2] / 1000:.1f} s)")
     for cat, items in by_cat.items():
         lat = [r["result"]["latency_ms"] for r in items if r["result"].get("latency_ms") is not None]
-        print(f"  p95 {cat:<10} {p95(lat) / 1000:.1f} s")
+        if lat:
+            print(f"  p95 {cat:<10} {p95(lat) / 1000:.1f} s")
     errors = [r for r in runs if r["result"].get("error")]
     print(f"cases with a run error: {len(errors)}")
 
