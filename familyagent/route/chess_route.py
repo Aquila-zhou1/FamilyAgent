@@ -1,4 +1,4 @@
-"""Chess assistant routes: chat page and streaming endpoint."""
+"""Chess assistant routes: chat page, streaming endpoint, and JSON endpoint."""
 
 from pathlib import Path
 
@@ -6,7 +6,7 @@ from fastapi import APIRouter
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
-from familyagent.agent.chess_agent import stream_answer
+from familyagent.agent.chess_agent import ask, stream_answer
 
 router = APIRouter(prefix="/agent/chess", tags=["chess"])
 
@@ -19,16 +19,34 @@ class Question(BaseModel):
     lang: str = "en"
 
 
+class ToolCall(BaseModel):
+    name: str
+    args: dict
+    ok: bool | None
+    result: str | None
+
+
+class Answer(BaseModel):
+    answer: str
+    tool_calls: list[ToolCall]
+    unavailable_servers: list[str]
+    error: str | None
+    latency_ms: int
+
+
 @router.get("", summary="Chat page", response_class=FileResponse)
 def chess_page() -> FileResponse:
     return FileResponse(CHAT_PAGE, media_type="text/html; charset=utf-8")
 
 
 @router.post("/stream", summary="Ask a question, streamed as plain text")
-def chess_stream(data: Question) -> StreamingResponse:
-    # A sync generator: Starlette iterates it in a worker thread, so the
-    # blocking model call does not stall the event loop.
+async def chess_stream(data: Question) -> StreamingResponse:
     return StreamingResponse(
         stream_answer(data.question, data.lang),
         media_type="text/plain; charset=utf-8",
     )
+
+
+@router.post("/ask", summary="Ask a question; returns the answer and the tool calls made")
+async def chess_ask(data: Question) -> Answer:
+    return Answer(**await ask(data.question, data.lang))

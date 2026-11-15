@@ -32,5 +32,5 @@ python -m familyagent
 
 ```powershell
 pytest                        # 不需要网络和真实密钥
-python scripts/check_llm.py   # 一次真实模型调用，不打印密钥
+python scripts/check_api.py   # 一次真实模型调用，不打印密钥
 ```

@@ -32,5 +32,5 @@ python -m familyagent
 
 ```powershell
 pytest                        # no network, no real key needed
-python scripts/check_llm.py   # one real model call; prints no secrets
+python scripts/check_api.py   # one real model call; prints no secrets
 ```

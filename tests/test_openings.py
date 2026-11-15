@@ -67,3 +67,19 @@ def test_find_by_moves_no_result(conn):
 def test_normalize_moves():
     assert normalize_moves("E2E4  c7c5") == ("uci", "e2e4 c7c5")
     assert normalize_moves("1. e4 c5 2. Nf3") == ("san", "e4 c5 Nf3")
+
+
+def test_find_deepest_opening_past_the_book(conn):
+    from familyagent.openings.search import find_deepest_opening
+
+    # Ruy Lopez followed by moves no book line continues with.
+    result = find_deepest_opening(conn, "e4 e5 Nf3 Nc6 Bb5 h5 h4 Rh6 a4 Ra6")
+    assert result["name"].startswith("Ruy Lopez")
+    assert result["matched_plies"] == 5 and result["given_plies"] == 10
+
+    exact = find_deepest_opening(conn, "e2e4 c7c5")
+    assert exact["name"] == "Sicilian Defense" and exact["matched_plies"] == 2
+
+    assert find_deepest_opening(conn, "Na3 Na6 Nb1 Nb8")["matched_plies"] == 1
+    assert find_deepest_opening(conn, "h7h5") is None
+    assert find_deepest_opening(conn, "") is None

@@ -8,12 +8,15 @@ dependencies = [
     "fastapi==0.128.0",
     "uvicorn==0.40.0",
     "langchain==1.2.7",
+    # 1.0.9+ imports langgraph.runtime.ExecutionInfo, which the langgraph 1.0.x
+    # required by langchain 1.2.7 does not have (ImportError at startup).
+    "langgraph-prebuilt==1.0.8",
     "langchain-core>=1.2.17",
     "langchain-openai==1.1.7",
     "openai==2.16.0",
     "pydantic-settings>=2.6",
     "httpx>=0.28",
-    "mcp>=1.9",
+    "mcp>=1.12,<2",
     "langchain-mcp-adapters>=0.1.0",
     "chess>=1.11",
 ]

@@ -5,6 +5,10 @@ later improvements can be measured against it on the same cases.
 
 - By name: case-insensitive substring match of the raw query against `name`.
 - By moves: exact match of the whole move sequence (UCI or SAN).
+
+`find_deepest_opening` is separate from that comparison: it is the structured
+lookup behind the `find_opening_by_moves` tool, where the caller passes moves
+only (for example the moves of a real game) and wants the opening they reach.
 """
 
 import re
@@ -58,3 +62,26 @@ def find_opening_by_moves(
         (value, limit),
     )
     return _rows(cursor)
+
+
+MAX_BOOK_PLY = 36  # the longest line in the dataset
+
+
+def find_deepest_opening(conn: sqlite3.Connection, moves: str) -> dict | None:
+    """The deepest known opening that the given moves start with.
+
+    A game continues past its opening, so the full move list rarely equals a
+    book line. This tries the longest prefix first and shortens it one
+    half-move at a time. Returns the row plus `matched_plies` and
+    `given_plies`, or None when not even the first move is a book line.
+    """
+    column, value = normalize_moves(moves)
+    tokens = value.split()
+    for length in range(min(len(tokens), MAX_BOOK_PLY), 0, -1):
+        row = conn.execute(
+            f"SELECT {RESULT_COLUMNS} FROM openings WHERE {column} = ?",
+            (" ".join(tokens[:length]),),
+        ).fetchone()
+        if row:
+            return {**dict(row), "matched_plies": length, "given_plies": len(tokens)}
+    return None
