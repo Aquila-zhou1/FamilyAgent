@@ -39,6 +39,9 @@ class Config(BaseSettings):
     # Openings server: which retrieval implementation search_openings uses
     SEARCH_IMPL: str = "bm25"
 
+    # Evaluation only: lets the lichess server accept POST /_fault to simulate upstream failures
+    EVAL_FAULTS: bool = False
+
     # Lichess server
     LICHESS_MODE: str = "live"  # "live" or "replay"
     LICHESS_RECORD: bool = False  # live mode: save responses as fixtures

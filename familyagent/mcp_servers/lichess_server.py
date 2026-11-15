@@ -11,9 +11,12 @@ import json
 import logging
 
 from mcp.server.fastmcp import FastMCP
+from starlette.requests import Request
+from starlette.responses import JSONResponse
 
 from familyagent.config import config
 from familyagent.lichess.client import LichessClient
+from familyagent.mcp_servers import faults
 from familyagent.mcp_servers.common import add_health_route, audit
 
 logger = logging.getLogger("familyagent.mcp.lichess")
@@ -35,6 +38,19 @@ client = LichessClient(
 )
 
 
+if config.EVAL_FAULTS:
+
+    @server.custom_route("/_fault", methods=["GET", "POST"])
+    async def fault_switch(request: Request) -> JSONResponse:
+        """Evaluation only: POST {"mode": "timeout"|"rate_limited"|"http_500"|"malformed"|"none"}."""
+        if request.method == "POST":
+            try:
+                faults.set_mode((await request.json())["mode"])
+            except (ValueError, KeyError, TypeError) as exc:
+                return JSONResponse({"error": str(exc)}, status_code=400)
+        return JSONResponse({"mode": faults.get_mode()})
+
+
 @server.tool()
 def get_daily_puzzle() -> str:
     """Get today's Lichess daily puzzle.
@@ -44,6 +60,7 @@ def get_daily_puzzle() -> str:
     position). Takes no arguments.
     """
     with audit(logger, "get_daily_puzzle"):
+        faults.apply()
         return json.dumps(client.daily(), ensure_ascii=False)
 
 
@@ -58,6 +75,7 @@ def get_puzzle(puzzle_id: str) -> str:
         puzzle_id: The Lichess puzzle ID, exactly as given (case-sensitive).
     """
     with audit(logger, "get_puzzle", puzzle_id=puzzle_id):
+        faults.apply()
         return json.dumps(client.puzzle(puzzle_id), ensure_ascii=False)
 
 

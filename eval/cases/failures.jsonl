@@ -1,0 +1,20 @@
+{"category": "failure", "fault": "timeout", "question": "What is today's daily puzzle and its solution?", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F001"}
+{"category": "failure", "fault": "timeout", "question": "Show me puzzle f9Xve and the solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F002"}
+{"category": "failure", "fault": "timeout", "question": "Give me the daily chess puzzle.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F003"}
+{"category": "failure", "fault": "timeout", "question": "Get Lichess puzzle PSjmf with its solution moves.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F004"}
+{"category": "failure", "fault": "rate_limited", "question": "What is today's Lichess daily puzzle?", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F005"}
+{"category": "failure", "fault": "rate_limited", "question": "Show me puzzle f9Xve and its solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F006"}
+{"category": "failure", "fault": "rate_limited", "question": "Give me the daily puzzle with its rating.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F007"}
+{"category": "failure", "fault": "http_500", "question": "What's the daily puzzle today? Include the solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F008"}
+{"category": "failure", "fault": "http_500", "question": "Fetch puzzle f9Xve and give me the solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F009"}
+{"category": "failure", "fault": "http_500", "question": "Tell me the themes and solution of the daily puzzle.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F010"}
+{"category": "failure", "fault": "malformed", "question": "What is the daily puzzle? Give the solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F011"}
+{"category": "failure", "fault": "malformed", "question": "Show me puzzle f9Xve and its solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F012"}
+{"category": "failure", "fault": "malformed", "question": "Get me the daily puzzle and its rating.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F013"}
+{"category": "failure", "fault": "openings_down", "question": "Which opening is 1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6?", "forbidden": ["Najdorf", "B90", "B94"], "case_id": "F014"}
+{"category": "failure", "fault": "openings_down", "question": "What are the moves of the Ruy Lopez?", "forbidden": ["Bb5"], "case_id": "F015"}
+{"category": "failure", "fault": "lichess_down", "question": "What is today's daily puzzle and its solution?", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F016"}
+{"category": "failure", "fault": "lichess_down", "question": "Show me puzzle f9Xve and its solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F017"}
+{"category": "failure", "fault": "lichess_down", "question": "Give me the daily puzzle and name the opening of its source game.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6", "Lw4qG"], "case_id": "F018"}
+{"category": "failure", "fault": "invalid_id", "question": "Show me Lichess puzzle ID ???", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F019"}
+{"category": "failure", "fault": "invalid_id", "question": "Get puzzle zz and its solution.", "forbidden": ["Rh7", "Qxf8", "f7h7", "h6f8", "g6h6"], "case_id": "F020"}

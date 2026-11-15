@@ -1,0 +1,30 @@
+{"category": "tool", "question": "What is today's Lichess daily puzzle?", "expected_tools": ["get_daily_puzzle"], "case_id": "T001"}
+{"category": "tool", "question": "Give me the daily chess puzzle.", "expected_tools": ["get_daily_puzzle"], "case_id": "T002"}
+{"category": "tool", "question": "Show me the Lichess puzzle of the day and its solution.", "expected_tools": ["get_daily_puzzle"], "case_id": "T003"}
+{"category": "tool", "question": "What's the rating and themes of today's daily puzzle?", "expected_tools": ["get_daily_puzzle"], "case_id": "T004"}
+{"category": "tool", "question": "I want to practice - what is the daily puzzle?", "expected_tools": ["get_daily_puzzle"], "case_id": "T005"}
+{"category": "tool", "question": "Tell me about today's puzzle on Lichess.", "expected_tools": ["get_daily_puzzle"], "case_id": "T006"}
+{"category": "tool", "question": "Which side moves first in the daily puzzle?", "expected_tools": ["get_daily_puzzle"], "case_id": "T007"}
+{"category": "tool", "question": "Get Lichess puzzle f9Xve", "expected_tools": ["get_puzzle"], "arg": {"tool": "get_puzzle", "key": "puzzle_id", "equals": "f9Xve"}, "case_id": "T008"}
+{"category": "tool", "question": "Show me puzzle ID f9Xve and its solution.", "expected_tools": ["get_puzzle"], "arg": {"tool": "get_puzzle", "key": "puzzle_id", "equals": "f9Xve"}, "case_id": "T009"}
+{"category": "tool", "question": "What's the rating of puzzle f9Xve?", "expected_tools": ["get_puzzle"], "arg": {"tool": "get_puzzle", "key": "puzzle_id", "equals": "f9Xve"}, "case_id": "T010"}
+{"category": "tool", "question": "Fetch Lichess puzzle PSjmf.", "expected_tools": ["get_puzzle"], "arg": {"tool": "get_puzzle", "key": "puzzle_id", "equals": "PSjmf"}, "case_id": "T011"}
+{"category": "tool", "question": "What are the themes of puzzle a1B2c?", "expected_tools": ["get_puzzle"], "arg": {"tool": "get_puzzle", "key": "puzzle_id", "equals": "a1B2c"}, "case_id": "T012"}
+{"category": "tool", "question": "Show me puzzle 00sHx.", "expected_tools": ["get_puzzle"], "arg": {"tool": "get_puzzle", "key": "puzzle_id", "equals": "00sHx"}, "case_id": "T013"}
+{"category": "tool", "question": "What are the moves of the Najdorf Sicilian?", "expected_tools": ["search_openings"], "arg": {"tool": "search_openings", "key": "query", "contains": "najdorf"}, "case_id": "T014"}
+{"category": "tool", "question": "Find the opening called Queen's Gambit Declined.", "expected_tools": ["search_openings"], "arg": {"tool": "search_openings", "key": "query", "contains": "declined"}, "case_id": "T015"}
+{"category": "tool", "question": "What is the ECO code of the Ruy Lopez?", "expected_tools": ["search_openings"], "arg": {"tool": "search_openings", "key": "query", "contains": "ruy"}, "case_id": "T016"}
+{"category": "tool", "question": "Show me the Caro-Kann Defense.", "expected_tools": ["search_openings"], "arg": {"tool": "search_openings", "key": "query", "contains": "caro"}, "case_id": "T017"}
+{"category": "tool", "question": "Moves of the London System?", "expected_tools": ["search_openings"], "arg": {"tool": "search_openings", "key": "query", "contains": "london"}, "case_id": "T018"}
+{"category": "tool", "question": "Tell me about the Scandinavian Defense.", "expected_tools": ["search_openings"], "arg": {"tool": "search_openings", "key": "query", "contains": "scandinavian"}, "case_id": "T019"}
+{"category": "tool", "question": "Which opening is 1.e4 c5 2.Nf3 d6?", "expected_tools": ["find_opening_by_moves"], "arg": {"tool": "find_opening_by_moves", "key": "moves", "moves": "e4 c5 Nf3 d6"}, "case_id": "T020"}
+{"category": "tool", "question": "Name the opening: 1.d4 d5 2.c4 e6", "expected_tools": ["find_opening_by_moves"], "arg": {"tool": "find_opening_by_moves", "key": "moves", "moves": "d4 d5 c4 e6"}, "case_id": "T021"}
+{"category": "tool", "question": "What opening is 1. e4 e5 2. Nf3 Nc6 3. Bb5?", "expected_tools": ["find_opening_by_moves"], "arg": {"tool": "find_opening_by_moves", "key": "moves", "moves": "e4 e5 Nf3 Nc6 Bb5"}, "case_id": "T022"}
+{"category": "tool", "question": "Which opening is e2e4 e7e5 g1f3 b8c6 f1b5?", "expected_tools": ["find_opening_by_moves"], "arg": {"tool": "find_opening_by_moves", "key": "moves", "moves": "e2e4 e7e5 g1f3 b8c6 f1b5"}, "case_id": "T023"}
+{"category": "tool", "question": "What opening starts 1.e4 c6 2.d4 d5?", "expected_tools": ["find_opening_by_moves"], "arg": {"tool": "find_opening_by_moves", "key": "moves", "moves": "e4 c6 d4 d5"}, "case_id": "T024"}
+{"category": "tool", "question": "Identify the opening: 1.d4 Nf6 2.c4 g6 3.Nc3 Bg7", "expected_tools": ["find_opening_by_moves"], "arg": {"tool": "find_opening_by_moves", "key": "moves", "moves": "d4 Nf6 c4 g6 Nc3 Bg7"}, "case_id": "T025"}
+{"category": "tool", "question": "What is today's daily puzzle, and which opening was its source game?", "expected_tools": ["get_daily_puzzle", "find_opening_by_moves"], "case_id": "T026"}
+{"category": "tool", "question": "Take the daily puzzle and tell me the name of the opening of the game it came from.", "expected_tools": ["get_daily_puzzle", "find_opening_by_moves"], "case_id": "T027"}
+{"category": "tool", "question": "What is castling in chess?", "expected_tools": [], "case_id": "T028"}
+{"category": "tool", "question": "Explain the en passant rule.", "expected_tools": [], "case_id": "T029"}
+{"category": "tool", "question": "How does a knight move?", "expected_tools": [], "case_id": "T030"}
