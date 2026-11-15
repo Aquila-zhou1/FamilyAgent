@@ -21,3 +21,4 @@ familyagent/.env
 plan/*
 eval/runs/*
 !eval/runs/.gitkeep
+raw
