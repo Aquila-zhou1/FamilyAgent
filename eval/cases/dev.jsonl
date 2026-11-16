@@ -13,3 +13,8 @@
 {"case_id": "D013", "category": "retrieval", "type": "moves_san_bare", "question": "e4 e5 Bc4 Bc5 Qe2 Nf6 f4", "answerable": true, "gold_name": "Bishop's Opening: Lopez Variation, Lopez Gambit", "gold_ids": [1833]}
 {"case_id": "D014", "category": "retrieval", "type": "moves_beyond_book", "question": "Which opening is 1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 g6 6. Be3 Bg7 7. f3 O-O 8. Qd2?", "answerable": true, "gold_name": "Sicilian Defense: Dragon Variation, Yugoslav Attack", "gold_ids": [1479, 1480, 1490, 1494]}
 {"case_id": "D015", "category": "retrieval", "type": "moves_beyond_book", "question": "What is this opening called: 1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 g6 6. Be3 Bg7", "answerable": true, "gold_name": "Sicilian Defense: Dragon Variation", "gold_ids": [1455, 1460]}
+{"case_id": "D016", "category": "retrieval", "type": "no_answer", "question": "Show me the Purple Dragon Gambit.", "answerable": false, "gold_name": null, "gold_ids": []}
+{"case_id": "D017", "category": "retrieval", "type": "no_answer", "question": "What are the moves of the Zebra Hedgehog System?", "answerable": false, "gold_name": null, "gold_ids": []}
+{"case_id": "D018", "category": "retrieval", "type": "no_answer", "question": "Tell me about the Lunar Pawn Storm.", "answerable": false, "gold_name": null, "gold_ids": []}
+{"case_id": "D019", "category": "retrieval", "type": "no_answer", "question": "How does the Crimson Fork Attack start?", "answerable": false, "gold_name": null, "gold_ids": []}
+{"case_id": "D020", "category": "retrieval", "type": "no_answer", "question": "What is the ECO code for the Nebula Defense?", "answerable": false, "gold_name": null, "gold_ids": []}

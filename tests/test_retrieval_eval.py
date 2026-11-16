@@ -50,21 +50,22 @@ def test_retrieve_handles_punctuation_only(conn):
 
 
 def test_case_files_are_well_formed():
-    frozen, dev = load("retrieval.jsonl"), load("dev.jsonl")
-    assert len(frozen) == 50 and len(dev) == 15
+    frozen, dev, holdout = load("retrieval.jsonl"), load("dev.jsonl"), load("holdout.jsonl")
+    assert len(frozen) == 50 and len(dev) == 20 and len(holdout) == 20
     assert sum(c["answerable"] for c in frozen) == 40
-    assert all(c["answerable"] for c in dev)
+    assert sum(c["answerable"] for c in dev) == 15
+    assert sum(c["answerable"] for c in holdout) == 16
 
-    ids = [c["case_id"] for c in frozen + dev]
+    ids = [c["case_id"] for c in frozen + dev + holdout]
     assert len(ids) == len(set(ids))
-    questions = [c["question"] for c in frozen + dev]
+    questions = [c["question"] for c in frozen + dev + holdout]
     assert len(questions) == len(set(questions))
 
     with db.DEFAULT_CSV.open(encoding="utf-8", newline="") as f:
         ids_by_name: dict[str, list[int]] = {}
         for row in csv.DictReader(f):
             ids_by_name.setdefault(row["name"], []).append(int(row["id"]))
-    for case in frozen + dev:
+    for case in frozen + dev + holdout:
         if case["answerable"]:
             assert case["gold_ids"] == sorted(ids_by_name[case["gold_name"]])
         else:

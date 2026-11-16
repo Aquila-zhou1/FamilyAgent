@@ -65,6 +65,14 @@ def ask(web: str, question: str, timeout: float) -> dict:
 
 def run_case(web: str, case: dict, timeout: float) -> dict:
     result = ask(web, case["question"], timeout)
+    retries = 0
+    # A dropped connection to the model API is infrastructure noise, not agent behaviour:
+    # retry up to twice and record how many retries were needed.
+    while retries < 2 and str(result.get("error") or "").startswith(("APIConnectionError", "APITimeoutError")):
+        retries += 1
+        time.sleep(2)
+        result = ask(web, case["question"], timeout)
+    result["retries"] = retries
     verdict = score(case, result)
     mark = "PASS" if verdict["pass"] else "FAIL"
     print(f"  {mark} {case['case_id']} {result.get('latency_ms')} ms  {case['question'][:60]}", flush=True)
